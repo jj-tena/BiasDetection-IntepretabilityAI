@@ -127,3 +127,99 @@ The feature r_charge_degree has the highest impact on the model’s predictions.
 Features related to recidivism history and crime charges are more influential than demographic factors like age, gender, and race.
 The model appears to have lower sensitivity to demographic variables, suggesting minimal bias related to these factors.
 The notebook has successfully demonstrated how SHAP can be used to interpret and understand machine learning models, providing insights into feature contributions and potential biases. This exercise enhances the ability to develop fairer and more transparent models in future work.
+
+## Notebook 3: Bias Detection and Explainability in Machine Learning Models
+
+### Use Case:
+This notebook aims to apply concepts related to bias detection and explainability in artificial intelligence models. We will work with the Adult dataset, analyzing and preprocessing its information to detect biases, train and validate a predictive model, and finally explore methods to mitigate biases. One of these strategies will be implemented to compare the performance of the original model with the adjusted model.
+This notebook also focuses on training and evaluating various machine learning models, and interpreting their predictions. We use the Adult dataset to train models, compare their performance, and explore methods to mitigate biases. The notebook aims to provide a comprehensive understanding of model behavior and assess how different techniques can improve fairness in model predictions.
+
+### Objective:
+The main objectives of this notebook are:
+To preprocess the Adult dataset, including data cleaning, outlier detection, and feature encoding.
+To identify and assess biases in the dataset and their potential impacts.
+To train and evaluate various machine learning models on the dataset.
+To implement and compare the performance of a bias mitigation technique.
+To enhance understanding of how biases affect model performance and the effectiveness of mitigation strategies.
+To train and evaluate multiple machine learning models on the Adult dataset.
+To compare model performance using common metrics.
+To interpret the trained models using SHAP values to understand feature importance and prediction contributions.
+To explore and implement bias mitigation strategies to enhance model fairness and compare the performance of the adjusted model with the original one.**
+
+### Steps:
+
+#### Dataset Introduction
+The Adult dataset, which includes socioeconomic information about adults, will be used. The initial step involves ingesting and analyzing the dataset to understand its structure and distribution.
+
+#### Data Ingestion
+The dataset is downloaded from Google Drive and loaded into a dataframe using Pandas for accessibility within the notebook environment.
+
+#### Exploratory Data Analysis (EDA)
+EDA is performed to comprehend the nature of the data, including dimensions, variables, types, statistics, missing values, unique values, outliers, and histograms.
+
+#### Bias Detection
+Identifying sensitive variables that could potentially introduce bias in model predictions:
+Sensitive Variables: Gender, race, marital-status, native-country, age.
+Non-Sensitive Variables: Education, hours-per-week, capital-gain, capital-loss, occupation, workclass, fnlwgt.
+Analyzing the impact of these sensitive variables on potential discrimination, trust in the model, and legal and ethical implications.
+
+#### Descriptive Analysis
+Identifying disparities in sensitive variables:
+Gender: Imbalance in sample sizes between men and women.
+Race: Predominance of white samples with fewer from other races.
+Marital Status: Higher number of married individuals compared to other statuses.
+Native Country: Predominance of US samples with limited representation from other countries.
+Age: Distribution of samples decreasing with age.
+
+#### Disparate Impact Metric
+Evaluating if the model treats different groups unequally:
+Gender: Women have a significantly lower rate of high-income success compared to men.
+Race: Black and Native American individuals have lower success rates compared to White and Asian individuals.
+Marital Status: Married individuals have higher success rates compared to others.
+Native Country: Variability in success rates based on country of origin, with lower rates for South American countries.
+
+#### Machine Learning Model
+Constructing and evaluating several machine learning models using the Adult dataset:
+Data Cleaning and Preprocessing: Handling missing values, standardizing numerical variables, encoding categorical variables.
+Outlier Detection and Removal: Using Local Outlier Factor (LOF) and Isolation Forest to identify and remove outliers.
+
+#### Bias Mitigation
+Implementing a bias mitigation technique to adjust the model and comparing its performance to the original model.
+Techniques Reviewed: Data augmentation, balancing techniques, post-processing, elimination of sensitive variables, regularization, continuous monitoring.
+Implemented Technique: Synthetic Minority Over-sampling Technique (SMOTE).
+
+#### Model Training
+The training process involves adjusting a model to predict outcomes based on input data and known labels. The goal is to minimize the error between model predictions and actual values by tuning the model's internal parameters.
+
+#### Algorithms and Evaluation
+Various supervised learning algorithms are used for this binary classification problem, including Decision Tree, K-Nearest Neighbors, Support Vector Classifier, and XGBoost.
+A common method for training these models is created to standardize the process.
+The dataset is split using train_test_split from Scikit-learn, with 70% of data for training and 30% for testing to ensure effective model evaluation.
+
+#### Model Validation
+Model validation involves evaluating performance on a separate dataset to ensure generalization to new data and avoid overfitting.
+The F1 score is used as the evaluation metric, reflecting the balance between precision and recall. A confusion matrix is also used to visualize classification performance.
+
+#### Model Interpretation and Visualization
+SHAP (SHapley Additive exPlanations) is employed to interpret model predictions, offering insights into feature importance and the impact of each feature on the model's output.
+Generating SHAP Values: SHAP values for the best-performing model (XGBoost) are computed to understand the contribution of each feature to individual predictions.
+Global Feature Importance: The summary_plot from SHAP shows the effect of each predictor on model predictions, highlighting key variables such as age, marital-status, and capital-gain. This helps identify the most influential features.
+
+#### Individual Prediction Interpretation
+The waterfall plot from SHAP is used to visualize how individual features contribute to specific predictions. This plot helps understand how different features influence the final prediction for selected instances.
+The analysis reveals that the most impactful features, both positively and negatively, are consistent with those identified in the global feature importance analysis.
+
+#### Bias Mitigation Proposals
+Various techniques to reduce bias are explored:
+Additional Data Collection: Increasing sample sizes for underrepresented groups to create a more balanced dataset.
+Data Balancing Techniques:
+Oversampling: Duplicating minority class samples.
+Undersampling: Reducing majority class samples.
+Synthetic Data Generation (SMOTE): Creating new synthetic samples for minority classes.
+Post-processing Predictions: Adjusting decision thresholds to balance error rates among different groups.
+Eliminating Sensitive Variables: Removing sensitive features from the dataset to prevent the model from learning discriminatory patterns.
+Fairness Regularization: Incorporating fairness constraints into the model training process.
+
+### Conclusion:
+This notebook demonstrates the application of bias detection and mitigation techniques in machine learning. By analyzing and preprocessing the Adult dataset, identifying potential biases, and implementing a bias mitigation strategy, we gain insights into the impact of biases on model performance. The results show how different techniques can improve model fairness and accuracy, ultimately contributing to more equitable and trustworthy machine learning systems.
+This notebook also provides a comprehensive approach to training, evaluating, and interpreting machine learning models, with a focus on bias detection and mitigation. By analyzing and visualizing model predictions using SHAP, we gain valuable insights into feature importance and prediction dynamics. Implementing bias mitigation techniques demonstrates how adjustments can enhance model fairness and performance, ensuring more equitable outcomes in machine learning applications.
