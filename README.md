@@ -1,7 +1,7 @@
 # BiasDetection-IntepretabilityAI
 This repository contains several notebooks exploring bias detection techniques in artificial intelligence models and applying various interpretability algorithms to analyze the decisions made by the models.
 
-## Notebook X: Analysis of COMPASS Algorithm Predictions
+## Notebook 1: Analysis of COMPASS Algorithm Predictions
 
 ### Use Case:
 This notebook analyzes the COMPASS algorithm's predictions for the likelihood of recidivism among criminals, focusing on how demographic factors such as race, gender, and age category affect these predictions. The goal is to evaluate potential biases in the algorithm's predictions by comparing them with actual recidivism rates measured two years after the original offense.
